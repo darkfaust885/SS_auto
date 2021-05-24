@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>О нас</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/SS_icon.ico">
+    <link rel="stylesheet" href="/css/about.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="/scripts/main.js"></script>
+    <script>
+        window.onload = function () {
+            is_auth_visible("profile-bt")
+            is_non_auth_visible("join-bt")
+
+            if (is_auth()) {
+                test_check_auth("lol").then(res => {
+                    console.log(res)
+                })
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!--Navigation-->
+    <div class="container">
+        <div class="nav_rod">
+            <nav>
+                <div class="post-navigation">
+                    <div class="left-text">
+                        <ul class="left-text-menu" type="none">
+                            <li>
+                                <a href="/index.html">Главная</a>
+                            </li>
+                            <li>
+                                <a href="/products.html">Товары</a>
+                            </li>
+                            <li>
+                                О нас
+                            </li>
+                        </ul>
+                    </div>
+                    <img id="ss-logo" src="/img/SS-logo.png" alt="SS_logo" width="50" height="50">
+                    <div class="right-text">
+                        <ul class="right-text-menu" type="none">
+                            <li>
+                                <a href="/contact.html">Контакты</a>
+                            </li>
+                            <li>
+                                <a href="/delivery.html">Доставка</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="korzina" href="/feedback.html">Корзина</a>
+                    <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <span class="join" id="join-bt"><a href="/autorization.html">Войти</a></span>
+                    <span class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></span>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container_about">
+        <p>SS Auto – ведущий продавец автозапчастей в России с 1998 года.</p>
+        <p>На сегодняшний день мы являемся одним из лидеров по продажам автомобильных товаров от ведущих мировых
+            производителей.
+        </p>
+        <p>SS Auto сотрудничает с такими известными брендами, как Kayaba, Total, Liqui Moly, Motul, Sangsin Brake и
+            многими другими. Прайс-листы компании насчитывают более 200 млн. предложений по 22 млн. наименованиям 3 000
+            торговых марок. Мы ежедневно обновляем
+            электронные каталоги, чтобы вы всегда могли получить актуальную информацию и найти нужные вам автозапчасти в
+            одном месте, не тратя время на поиски.</p>
+        <p>Благодаря надежным и налаженным схемам взаимодействия SS Auto осуществляет поставки с центральных складов
+            основных автопроизводителей России (группа VAG, Toyota, Nissan, Mercedes Benz, Ford, Mobis и др.), крупных
+            оптовых складов автозапчастей,
+            а также доставляет запчасти из ОАЭ, Японии, США, Германии и Кореи.</p>
+        <p>Каждый клиент SS Auto получает персонального менеджера, который отслеживает всю цепочку от размещения заказа
+            до его получения. Если вы затрудняетесь с выбором, то персональный менеджер сможет ответить на все ваши
+            вопросы, предоставить необходимую
+            информацию о производителях и помочь с выбором.</p>
+        <p>Высокий профессионализм наших сотрудников и индивидуальный подход к каждому покупателю, позволяют
+            предоставлять клиентам только качественные запчасти и строго соблюдать обязательства по логистике!</p>
+        <img id="image" src="/img/about_map.png">
+    </div>
+
+    <!--Footer-->
+    <div class="footer active">
+        <div class="footer">
+            SS 2021 Still Only
+            <br>
+            <br> Контактный телефон: +79969242132
+            <br> Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13
+        </div>
+    </div>
+
+</body>
+
+</html>

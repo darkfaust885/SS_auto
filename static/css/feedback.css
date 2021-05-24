@@ -1,0 +1,35 @@
+.footer.active {
+    opacity: 1;
+    background-color: #000000;
+
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 110px;
+    left: 0px;
+    padding: 0px 73px 50px 73px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #c8c8c8;
+}
+.empty {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #adadad;
+    font-size: 30px;
+    background-color: rgb(245, 245, 245);
+    width: 230px;
+    height: 55px;
+    padding: 7px;
+    padding-left: 13px;
+    padding-top: 5px;
+    position: absolute;
+    left:44%;
+    top: 44%;
+    border-radius: 30px;
+}

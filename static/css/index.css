@@ -1,0 +1,65 @@
+body {
+    background: url(/img/index.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+html {
+    width: 1920px;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #c8c8c8;
+    font-size: 30px;
+}
+
+.head {
+    position: absolute;
+    right: 0;
+    top: 100px;
+    width: 500px;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #c8c8c8;
+    font-size: 30px;
+}
+
+.middle {
+    position: absolute;
+    top: 250px;
+    right: 0;
+    width: 500px;
+}
+
+p {
+    transition: all 500ms;
+}
+
+.footer.active {
+    opacity: 1;
+    background-color: #000000;
+}
+
+.footer {
+    position: absolute;
+    width: 1920px;
+    bottom: 0;
+    height: 110px;
+    left: 0px;
+    padding: 0px 73px 50px 73px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #c8c8c8;
+}
+#join-bt {
+    position: absolute;
+    right: 200px;
+    margin-left: -20px;
+}

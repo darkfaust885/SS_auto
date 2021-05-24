@@ -1,0 +1,29 @@
+.footer.active {
+    opacity: 1;
+    background-color: #000000;
+}
+
+.footer {
+    position: absolute;
+    width: 1910px;
+    height: 110px;
+    left: 0px;
+    padding: 0px 73px 50px 73px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 50;
+    color: #c8c8c8;
+}
+span {
+    font-family: Arial, Helvetica; 
+    font-size: 14pt;
+}
+.row-column {
+    background-color: rgb(245, 245, 245);
+    width: 1860px;
+    height: 100%;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}

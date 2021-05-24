@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>SS Auto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/SS_icon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="/scripts/main.js"></script>
+    <script>
+        window.onload = function() {
+            is_auth_visible("profile-bt")
+            is_non_auth_visible("join-bt")
+
+            if (is_auth()) {
+                test_check_auth("lol").then(res => {
+                    console.log(res)
+                })
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!--Navigation-->
+    <div class="container">
+        <div class="nav_rod">
+            <nav>
+                <div class="post-navigation">
+                    <div class="left-text">
+                        <ul class="left-text-menu" type="none">
+                            <li>
+                                Главная
+                            </li>
+                            <li>
+                                <a href="/products.html">Товары</a>
+                            </li>
+                            <li>
+                                <a href="/about.html">О нас</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img id="ss-logo" src="/img/SS-logo.png" alt="SS_logo" width="50" height="50">
+                    <div class="right-text">
+                        <ul class="right-text-menu" type="none">
+                            <li>
+                                <a href="/contact.html">Контакты</a>
+                            </li>
+                            <li>
+                                <a href="/delivery.html">Доставка</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="korzina" href="/feedback.html">Корзина</a>
+                    <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <p class="join" id="join-bt"><a href="/autorization.html">Войти</a></p>
+                    <p class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></p>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!--Head-->
+    <div class="head">
+        <h1 id="head">SS Auto - магазин качественных автозапчастей для отечественных автомобилей.</h1>
+    </div>
+    <div class="middle">
+        <h2>Нам доверяют уже 23 года. Надежные поставщики, быстрая доставка, низкие цены.</h2>
+    </div>
+
+    <!--Footer-->
+    <div class="footer active">
+
+        <div class="footer">
+            <p class="">SS 2021 Still Only</p>
+            <p>Контактный телефон: +79969242132</p>
+            <p>Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13</p>
+        </div>
+    </div>
+</body>
+
+</html>

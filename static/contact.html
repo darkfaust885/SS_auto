@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Контакты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/SS_icon.ico">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="/scripts/main.js"></script>
+    <script>
+        window.onload = function () {
+            is_auth_visible("profile-bt")
+            is_non_auth_visible("join-bt")
+
+            if (is_auth()) {
+                test_check_auth("lol").then(res => {
+                    console.log(res)
+                })
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+    function initMap() {
+    const uluru = { lat: 51.78715814337586, lng: 55.07524067587022 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: uluru,
+    });
+    const marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+    });
+  }
+    </script>
+    <!--Navigation-->
+    <div class="container">
+        <div class="nav_rod">
+            <nav>
+                <div class="post-navigation">
+                    <div class="left-text">
+                        <ul class="left-text-menu" type="none">
+                            <li>
+                                <a href="/index.html">Главная</a>
+                            </li>
+                            <li>
+                                <a href="/products.html">Товары</a>
+                            </li>
+                            <li>
+                                <a href="/about.html">О нас</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img id="ss-logo" src="/img/SS-logo.png" alt="SS_logo" width="50" height="50">
+                    <div class="right-text">
+                        <ul class="right-text-menu" type="none">
+                            <li>
+                                Контакты
+                            </li>
+                            <li>
+                                <a href="/delivery.html">Доставка</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="korzina" href="/feedback.html">Корзина</a>
+                    <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <span class="join" id="join-bt"><a href="/autorization.html">Войти</a></span>
+                    <p class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></p>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!--Основная информация-->
+    <section class="siteSection">
+        <div class="siteSectionIn">
+            <div class="baseContent">
+                <article class="mainArticle">
+                    <h1><strong>КОНТАКТЫ</strong></h1>
+                    <p>
+                        <span><strong>График работы:</strong></span>
+                        <br> 
+                        Понедельник - пятница:
+                        <strong>9:00 - 19:00</strong>&nbsp;
+                        <br> 
+                        Суббота - воскресенье: выходной
+                        <br>
+                        <br>
+                        <strong>ОНЛАЙН заказы - КРУГЛОСУТОЧНО </strong> и <strong> БЕЗ ВЫХОДНЫХ </strong>
+                        <br>
+                        <br>
+                    </p>
+                    <p>
+                        <span><strong>Телефон:</strong></span>
+                        <br> 
+                        <a href="tel:+79969242132">+7 (9969) 242-132</a>
+                            <br>
+                    
+                    </p>
+                    <p><span><strong><br>E-mail:</strong></span>
+                        <br>
+                         <a href="mailto:darkfaust885@gmail.com">darkfaust885@gmail.com</a>
+                        </p>
+                    <p><strong><br>Ждем Вас по адресу:</strong><br> г. Оренбург, Проспект Братьев Коростелёвых 13</p>
+                    <p><span><strong>Удобное месторасположение, на пересечении транспортных путей.</strong></span></p>
+                    <div id="map"></div>
+
+                    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+                    <script
+                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+                      async
+                    ></script>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <div class="footer active">
+
+        <div class="footer">
+            <p class="">SS 2021 Still Only</p>
+            <p>Контактный телефон: +79969242132</p>
+            <p>Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13</p>
+        </div>
+    </div>
+    
+</body>
+
+</html>

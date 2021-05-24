@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Авторизация</title>
+    <link rel="icon" href="/img/SS_icon.ico">
+    <link rel="stylesheet" href="/css/style_autorization.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="/scripts/main.js"></script>
+    <script>
+        function submitAuth() {
+            let name = document.getElementById('login').value;
+            if (!name || name.isEmpty) return;
+            let password = document.getElementById('password').value;
+            if (!password || password.isEmpty) return;
+            console.log(name, password)
+            auth(name, password).then(res => {
+                if (res === undefined) {
+                    alert("Неправильный логин или пароль")
+                } else {
+                    set_cookie('token', res['token'])
+                    document.location = "/"
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="autorizon">
+        <div class="header">
+            <div class="test">
+                <img src="/img/SS-logo.png" width="50" height="50">
+                <div class="close-image">
+                    <a href="/index.html"><button id="close" title="Закрыть"></button></a>
+                </div>
+            </div>
+        </div>
+        <form id="authForm" onsubmit="return false">
+            <input id="login" type="text" placeholder="Логин">
+            <input id="password" type="password" placeholder="Пароль">
+            <input id="submit" type="submit" value="Авторизоваться" onclick="submitAuth()">
+            <a href="/index.html">
+                <input id="loss-log" type="submit" value="Создать новую учетную запись">
+            </a>
+        </form>
+    </div>
+</body>
+
+</html>

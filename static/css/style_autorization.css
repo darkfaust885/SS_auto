@@ -1,0 +1,125 @@
+html {
+    background: url(/img/back.jpg);
+    background-size: auto;
+}
+
+body {
+    margin: 0;
+    background-size: auto;
+}
+
+.autorizon {
+    background-color: #fff;
+    display: flex;
+    width: 400px;
+    height: 450px;
+    margin: auto;
+    margin-top: 9%;
+    border-radius: 5px;
+    transition: all 500ms ease;
+    position: relative;
+}
+
+.header {
+    position: absolute;
+    width: 400px;
+    height: 60px;
+    display: flex;
+    background-color: #3C3C3C;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.close-image {
+    position: absolute;
+    left: 165px;
+    top: 0px;
+}
+
+#close {
+    background: url(/img/close.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    border: none;
+    opacity: .5;
+    cursor: pointer;
+}
+
+#close:hover {
+    color: white;
+    opacity: 1;
+}
+
+.test {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 180px;
+    top: 7px;
+}
+
+#login {
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    top: 120px;
+    left: 80px;
+    border-color: #c8c8c8;
+    border-radius: .2rem;
+    border-style: solid;
+    border-width: .1rem;
+    outline: none;
+}
+
+#password {
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    top: 170px;
+    left: 80px;
+    border-color: #c8c8c8;
+    border-radius: .2rem;
+    border-style: solid;
+    border-width: .1rem;
+    outline: none;
+}
+
+#submit {
+    position: absolute;
+    width: 150px;
+    height: 25px;
+    top: 220px;
+    left: 130px;
+}
+
+#submit {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+    border: none;
+    border-radius: 2px;
+}
+
+#loss-log {
+    position: absolute;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+    width: 250px;
+    height: 30px;
+    top: 300px;
+    left: 80px;
+    border: none;
+    border-radius: 3px;
+}
+
+input:placeholder {
+    color: rgba(0, 0, 0, .55);
+}
+
+#login:hover {
+    background-color: #ececec;
+}
+
+#password:hover {
+    background-color: #ececec;
+}
