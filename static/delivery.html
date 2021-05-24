@@ -23,13 +23,11 @@
                 })
             }
             is_auth_visible("korzina")
+            is_auth_visible("logout")
+            is_non_auth_visible("join")
         }
-        
     </script>
-    
-    
 </head>
-
 <body>
     <!--Navigation-->
     <div class="container">
@@ -62,6 +60,7 @@
                     </div>
                     <a id="korzina" class="korzina" href="/feedback.html">Корзина</a>
                     <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <a href="#" onclick="logout()"><img id="logout" src="/img/join.png" width="25" height="25"></a>
                     <p class="join" id="join-bt"><a href="/autorization.html">Войти</a></p>
                     <p class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></p>
                 </div>

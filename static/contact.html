@@ -22,23 +22,26 @@
                     console.log(res)
                 })
             }
+            is_auth_visible("korzina")
+            is_auth_visible("logout")
+            is_non_auth_visible("join")
         }
     </script>
 </head>
 
 <body>
     <script>
-    function initMap() {
-    const uluru = { lat: 51.78715814337586, lng: 55.07524067587022 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: uluru,
-    });
-    const marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-    });
-  }
+        function initMap() {
+            const uluru = { lat: 51.78715814337586, lng: 55.07524067587022 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
     </script>
     <!--Navigation-->
     <div class="container">
@@ -69,8 +72,9 @@
                             </li>
                         </ul>
                     </div>
-                    <a class="korzina" href="/feedback.html">Корзина</a>
+                    <a id="korzina" class="korzina" href="/feedback.html">Корзина</a>
                     <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <a href="#" onclick="logout()"><img id="logout" src="/img/join.png" width="25" height="25"></a>
                     <span class="join" id="join-bt"><a href="/autorization.html">Войти</a></span>
                     <p class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></p>
                 </div>
@@ -86,10 +90,10 @@
                     <h1><strong>КОНТАКТЫ</strong></h1>
                     <p>
                         <span><strong>График работы:</strong></span>
-                        <br> 
+                        <br>
                         Понедельник - пятница:
                         <strong>9:00 - 19:00</strong>&nbsp;
-                        <br> 
+                        <br>
                         Суббота - воскресенье: выходной
                         <br>
                         <br>
@@ -99,24 +103,23 @@
                     </p>
                     <p>
                         <span><strong>Телефон:</strong></span>
-                        <br> 
+                        <br>
                         <a href="tel:+79969242132">+7 (9969) 242-132</a>
-                            <br>
-                    
+                        <br>
+
                     </p>
                     <p><span><strong><br>E-mail:</strong></span>
                         <br>
-                         <a href="mailto:darkfaust885@gmail.com">darkfaust885@gmail.com</a>
-                        </p>
+                        <a href="mailto:darkfaust885@gmail.com">darkfaust885@gmail.com</a>
+                    </p>
                     <p><strong><br>Ждем Вас по адресу:</strong><br> г. Оренбург, Проспект Братьев Коростелёвых 13</p>
                     <p><span><strong>Удобное месторасположение, на пересечении транспортных путей.</strong></span></p>
                     <div id="map"></div>
 
                     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
                     <script
-                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-                      async
-                    ></script>
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+                        async></script>
                 </article>
             </div>
         </div>
@@ -131,7 +134,7 @@
             <p>Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13</p>
         </div>
     </div>
-    
+
 </body>
 
 </html>

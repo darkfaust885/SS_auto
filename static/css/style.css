@@ -106,10 +106,9 @@ li {
 
 .korzina {
     display: inline-flex;
-    margin-left: 10px;
     position: absolute;
     margin-top: -45px;
-    margin-left: 556px;
+    margin-left: 1510px;
     font-size: 20px;
     letter-spacing: 2px;
     color: azure;
@@ -119,9 +118,14 @@ li {
     display: inline-flex;
     position: absolute;
     margin-top: -42px;
-    margin-left: 700px;
+    margin-left: 1680px;
 }
-
+#logout {
+    display: inline-flex;
+    position: absolute;
+    margin-top: -42px;
+    margin-left: 1680px; 
+}
 a {
     text-decoration: none;
 }

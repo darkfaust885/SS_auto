@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/SS_icon.ico">
     <link rel="stylesheet" href="/css/feedback.css">
+    <script src="/scripts/main.js"></script>
+    <script>
+        window.onload = function () {
+            is_auth_visible("profile-bt")
+            is_non_auth_visible("join-bt")
+
+            if (is_auth()) {
+                test_check_auth("lol").then(res => {
+                    console.log(res)
+                })
+            }
+            is_auth_visible("korzina")
+        }
+    </script>
 </head>
 
 <body>
@@ -41,9 +55,11 @@
                             </li>
                         </ul>
                     </div>
-                    <p class="korzina">Корзина</p>
-                    <a href="autorization.html"><img id="join" src="img/join.png" width="25" height="25"></a>
-                    <p class="join"><a href="autorization.html">Войти</a></p>
+                    <a id="korzina" class="korzina" href="/feedback.html">Корзина</a>
+                    <a href="/autorization.html"><img id="join" src="/img/join.png" width="25" height="25"></a>
+                    <a href="#" onclick="logout()"><img id="logout" src="/img/join.png" width="25" height="25"></a>
+                    <span class="join" id="join-bt"><a href="/autorization.html">Войти</a></span>
+                    <p class="join" id="profile-bt"><a href="#" onclick="logout()">Выйти</a></p>
                 </div>
             </nav>
         </div>
