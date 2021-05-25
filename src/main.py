@@ -14,7 +14,7 @@ STATIC_PATH = "static"
 
 con = sqlite3.connect('data.db')
 cur = con.cursor()
-
+cur.execute('PRAGMA encoding="UTF-8";')
 
 def get_hashed_password(plain_text_password):
     return bcrypt.hashpw(plain_text_password.encode(), bcrypt.gensalt())

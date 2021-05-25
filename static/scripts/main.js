@@ -13,6 +13,21 @@ async function auth(username, password) {
             }
         })
 }
+async function reg(username, password) {
+    const model = {
+        "name": username,
+        "password": password
+    }
+    const request = new Request('/api/regustration', { method: 'GET', body: JSON.stringify(model) });
+    return fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                return undefined
+            }
+        })
+}
 
 function set_cookie(name, value) {
     let date = new Date(Date.now() + 86400e3);

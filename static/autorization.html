@@ -25,6 +25,19 @@
                 }
             })
         }
+        function getAuth() {
+            let name = document.getElementById('login').value;
+            if (!name || name.isEmpty) return;
+            let password = document.getElementById('password').value;
+            if (!password || password.isEmpty) return;
+            console.log(name, password)
+            reg(name, password).then(res => {
+                {
+                    set_cookie('token', res['token'])
+                    document.location = "/"
+                }
+            })
+        }
     </script>
 </head>
 
@@ -43,9 +56,9 @@
             <input id="login" type="text" placeholder="Логин">
             <input id="password" type="password" placeholder="Пароль">
             <input id="submit" type="submit" value="Авторизоваться" onclick="submitAuth()">
-            <a href="/index.html">
-                <input id="loss-log" type="submit" onclick="getAuth()" value="Создать новую учетную запись">
-            </a>
+            
+                <input id="loss-log" type="submit" onclick="registration()" value="Создать новую учетную запись">
+            
         </form>
     </div>
 </body>
