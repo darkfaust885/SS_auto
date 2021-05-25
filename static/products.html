@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <script src="/scripts/main.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             is_auth_visible("profile-bt")
             is_non_auth_visible("join-bt")
 
@@ -25,7 +25,80 @@
             is_auth_visible("korzina")
             is_auth_visible("logout")
             is_non_auth_visible("join")
+
+            if (is_auth()) {
+                getOrders().then(res => {
+                    let count = (res || []).reduce((acc, val) => {
+                        return acc + (val.quantity || 0)
+                    }, 0)
+                    document.getElementById('korzina').textContent = `Корзина (${count})`
+                })
+            }
+            getAllItems().then(res => {
+                console.log(res);
+                let htmlString = ""
+                if (res === undefined || res.length == 0) {
+                    htmlString += `
+                    <div style="
+                        height: 500px;
+                        text-align: center;
+                        padding-top: 240px;
+                    ">
+                        Ничего нет
+                        </div>
+                    `
+                } else {
+                    let chunks = chunkArray(res, 5)
+                    chunks.forEach(items => {
+                        htmlString += `
+                        <div class="message-wrap-container" style="margin-top: 10px; margin-bottom: 10px;" id="contents-block">
+                        <div 
+                            style="
+                                flex-direction: row;
+                                flex: 5;
+                                display: contents;
+                            "
+                        >
+                        `
+                        items.forEach(item => {
+                            htmlString += `
+                            <div class="card" style="width: 18rem;flex: 1;margin: 5px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.name_auto_part}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${item.price} P</h6>
+                                    <p class="card-text">Для автомобиля ${item.car.car_brand} ${item.car.car_model}, ${item.car.years_of_cars_production} года выпуска.</p>
+                                    <p class="card-text text-muted">Производитель: "${item.producer.name_priducer}" по адресу ${item.producer.adress}.<br>Телефон ${item.producer.phone}</p>
+                                    <a href="#" class="card-link" style="color: dodgerblue;" onclick='add(${item.id})'>Добавить в карзину</a>
+                                </div>
+                            </div>
+                            `
+                        })
+                        htmlString += `
+                        </div>
+                        </div>
+                        `
+                    })
+                }
+                let block = document.getElementById("contents-block")
+                block.innerHTML = htmlString.trim()
+            })
         }
+
+        function add(id_auto_part) {
+            if (is_auth()) {
+                addToOrder(id_auto_part).then(res => {
+                    if (res.error === undefined) {
+                        window.location.reload()
+                    } else {
+                        alert("Ошибка добавления в карзину")
+                    }
+                })
+            } else {
+                window.location = "/autorization.html"
+            }
+        }
+
+        const chunkArray = (arr, size) => arr.length > size ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)] : [arr];
     </script>
 </head>
 
@@ -72,271 +145,7 @@
 
     <div class="content-wrap active">
         <div class="content">
-            <div class="message-wrap-container">
-                <div class="message-wrap-container-with-video__item">
-                    <div class="message message-hide message-hide-one transitionDelayActive_one active">
-                        <div class="mess-album-title-wrap">
-                            <div class="mess-album-title">ROCKET &amp; LILDRUGHILL –<br>Super Fly</div>
-                        </div>
-
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="message-wrap-container-with-video__item">
-                    <div class="message message-hide message-hide-two transitionDelayActive_two active">
-
-                        <div class="mess-album-title-wrap">
-                            <div class="mess-album-title">ROCKET – BOMB<br><br></div>
-                        </div>
-                        <div class="mess-album-service-wrap">
-                        </div>
-                    </div>
-
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="message-wrap-container-with-video__item">
-                    <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                        <div class="mess-album-title-wrap">
-                            <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                        </div>
-                        <div class="mess-album-service-wrap">
-
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-wrap-container-with-video__item">
-                    <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                        <div class="mess-album-title-wrap">
-                            <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                        </div>
-                        <div class="mess-album-service-wrap">
-
-                        </div>
-
-                    </div>
-                    <div class="message-wrap-container-with-video__item">
-                        <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                            <div class="mess-album-title-wrap">
-                                <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                            </div>
-                            <div class="mess-album-service-wrap">
-
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-wrap-container-with-video__item">
-                            <div class="message message-hide message-hide-three transitionDelayActive_three active">
-
-                                <div class="mess-album-title-wrap">
-                                    <div class="mess-album-title">ROCKET – Ego Trippin'<br><br></div>
-                                </div>
-                                <div class="mess-album-service-wrap">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="contents-block">
             </div>
         </div>
         <!--Footer-->

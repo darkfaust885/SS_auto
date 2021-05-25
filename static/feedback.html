@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/feedback.css">
     <script src="/scripts/main.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             is_auth_visible("profile-bt")
             is_non_auth_visible("join-bt")
 
@@ -21,6 +21,39 @@
                 })
             }
             is_auth_visible("korzina")
+
+            if (is_auth()) {
+                getOrders().then(res => {
+                    let items = res || []
+                    if (items.length > 0) {
+                        let block = document.getElementById('content-block')
+                        htmlString = `
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Кол-во</th>
+                                <th scope="col">Цена за штуку</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        `
+                        items.forEach((item, index) => {
+                            htmlString += `
+                            <tr>
+                                <th scope="row">${index + 1}</th>
+                                <td>${item.auto_part.name_auto_part}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.auto_part.price}</td>
+                            </tr>
+                            `
+                        })
+                        htmlString += `</table>`
+                        block.innerHTML = htmlString.trim()
+                    }
+                })
+            }
         }
     </script>
 </head>
@@ -66,16 +99,19 @@
     </div>
 
     <!--Основная информация-->
-    <div id="empty-cart" class="empty">Корзина пуста.</div>
- <!--Footer-->
- <div class="footer active">
-
-    <div class="footer">
-        <p class="">SS 2021 Still Only</p>
-        <p>Контактный телефон: +79969242132</p>
-        <p>Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13</p>
+    <div id="content-block">
+        <div id="empty-cart" class="empty">Корзина пуста.</div>
     </div>
-</div>
+    <!--Footer-->
+    <div class="footer active">
+
+        <div class="footer">
+            <p class="">SS 2021 Still Only</p>
+            <p>Контактный телефон: +79969242132</p>
+            <p>Адрес: Г.Оренбург, Проспект Братьев Коростелёвых 13</p>
+        </div>
+    </div>
 
 </body>
+
 </html>

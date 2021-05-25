@@ -13,12 +13,56 @@ async function auth(username, password) {
             }
         })
 }
-async function reg(username, password) {
+async function registration(username, password, first_name, last_name, middle_name, phone) {
     const model = {
         "name": username,
-        "password": password
+        "password": password,
+        'first_name': first_name,
+        'last_name': last_name,
+        'middle_name': middle_name,
+        'phone': phone
     }
-    const request = new Request('/api/regustration', { method: 'GET', body: JSON.stringify(model) });
+    const request = new Request('/api/registration', { method: 'POST', body: JSON.stringify(model) });
+    return fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                return {}
+            } else {
+                return { 'error': response.text() }
+            }
+        })
+}
+
+async function getOrders() {
+    const request = new Request('/api/get-orders', { method: 'GET', headers: { 'Authorization': 'Bearer ' + get_token() } });
+    return fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                return undefined
+            }
+        })
+}
+
+async function addToOrder(id_auto_part, quantity) {
+    const model = {
+        "id_auto_part": id_auto_part,
+        'quantity': quantity || 1
+    }
+    const request = new Request('/api/get-orders/add', { method: 'POST', body: JSON.stringify(model), headers: { 'Authorization': 'Bearer ' + get_token() } });
+    return fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                return {}
+            } else {
+                return { 'error': response.text() }
+            }
+        })
+}
+
+async function getAllItems() {
+    const request = new Request('/api/get-items');
     return fetch(request)
         .then(response => {
             if (response.status === 200) {

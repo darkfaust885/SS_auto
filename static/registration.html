@@ -1,0 +1,69 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Регистрация</title>
+    <link rel="icon" href="/img/SS_icon.ico">
+    <link rel="stylesheet" href="/css/style_autorization.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="/scripts/main.js"></script>
+    <script>
+        function submitRegistration() {
+            let name = document.getElementById('login').value;
+            if (!name || name.isEmpty) return;
+            let password = document.getElementById('password').value;
+            if (!password || password.isEmpty) return;
+            let first_name = document.getElementById('first_name').value;
+            if (!first_name || first_name.isEmpty) return;
+            let last_name = document.getElementById('last_name').value;
+            if (!last_name || last_name.isEmpty) return;
+            let middle_name = document.getElementById('middle_name').value;
+            if (!middle_name || middle_name.isEmpty) return;
+            let phone = document.getElementById('phone').value;
+            if (!phone || phone.isEmpty) return;
+
+            registration(name, password, first_name, last_name, middle_name, phone).then(res => {
+                if (res.error !== undefined) {
+                    alert("Ошибка: " + res.error)
+                } else {
+                    goToAuth()
+                }
+            })
+        }
+
+        function goToAuth() {
+            document.location = "/autorization.html"
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="autorizon">
+        <div class="header">
+            <div class="test">
+                <img src="/img/SS-logo.png" width="50" height="50">
+                <div class="close-image">
+                    <a href="/index.html"><button id="close" title="Закрыть"></button></a>
+                </div>
+            </div>
+        </div>
+        <form id="authForm" class="auth-container" onsubmit="return false">
+            <input id="login" class="auth-input" type="text" placeholder="Логин">
+            <input id="password" class="auth-input" type="password" placeholder="Пароль">
+            <input id="first_name" class="auth-input" type="text" placeholder="Имя">
+            <input id="last_name" class="auth-input" type="text" placeholder="Фамилия">
+            <input id="middle_name" class="auth-input" type="text" placeholder="Отчество">
+            <input id="phone" class="auth-input" type="text" placeholder="Телефон">
+
+            <input id="submit" type="submit" value="Регистрация" onclick="submitRegistration()">
+
+            <input id="loss-log" type="submit" onclick="goToAuth()" value="Войти">
+
+        </form>
+    </div>
+</body>
+
+</html>
