@@ -25,6 +25,14 @@
             is_auth_visible("korzina")
             is_auth_visible("logout")
             is_non_auth_visible("join")
+            if (is_auth()) {
+                getOrders().then(res => {
+                    let count = (res || []).reduce((acc, val) => {
+                        return acc + (val.quantity || 0)
+                    }, 0)
+                    document.getElementById('korzina').textContent = `Корзина (${count})`
+                })
+            }
         }
     </script>
 </head>

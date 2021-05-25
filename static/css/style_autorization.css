@@ -108,10 +108,18 @@ input:placeholder {
     color: rgba(0, 0, 0, .55);
 }
 
-#login:hover {
+.auth-input:hover {
     background-color: #ececec;
 }
 
-#password:hover {
-    background-color: #ececec;
+
+#login {
+    position: relative;
+    left: 80px;
+    top: 80px;
+}
+#password {
+    position: relative;
+    top: 85px;
+    left: 80px;
 }

@@ -1,0 +1,54 @@
+#login {
+position: relative;
+left: 80px;
+top: 20px;
+}
+#password {
+    position: relative;
+    left: 80px;
+    top: 25px;
+}
+#first_name {
+    position: relative;
+    left: 80px;
+    top: 30px;
+}
+#last_name {
+    position: relative;
+    left: 80px;
+    top: 35px;
+}
+#middle_name {
+    position: relative;
+    left: 80px;
+    top: 40px;
+}
+#phone {
+    position: relative;
+    left: 80px;
+    top: 45px;
+}
+#submit {
+    position: relative;
+    left: 130px;
+    top: 60px;
+}
+#loss-log {
+    position: relative;
+    left: 80px;
+    top: 100px;
+}
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+a:visited {
+    color: azure;
+    text-decoration: none;
+}

@@ -68,7 +68,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted">${item.price} P</h6>
                                     <p class="card-text">Для автомобиля ${item.car.car_brand} ${item.car.car_model}, ${item.car.years_of_cars_production} года выпуска.</p>
                                     <p class="card-text text-muted">Производитель: "${item.producer.name_priducer}" по адресу ${item.producer.adress}.<br>Телефон ${item.producer.phone}</p>
-                                    <a href="#" class="card-link" style="color: dodgerblue;" onclick='add(${item.id})'>Добавить в карзину</a>
+                                    <a href="#" class="card-link" style="color: dodgerblue;" onclick='add(${item.id})'>Добавить в корзину</a>
                                 </div>
                             </div>
                             `
@@ -90,7 +90,7 @@
                     if (res.error === undefined) {
                         window.location.reload()
                     } else {
-                        alert("Ошибка добавления в карзину")
+                        alert("Ошибка добавления в корзину")
                     }
                 })
             } else {
