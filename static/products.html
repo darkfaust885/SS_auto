@@ -34,6 +34,7 @@
                     document.getElementById('korzina').textContent = `Корзина (${count})`
                 })
             }
+            
             getAllItems().then(res => {
                 console.log(res);
                 let htmlString = ""
@@ -64,7 +65,7 @@
                             htmlString += `
                             <div class="card" style="width: 18rem;flex: 1;margin: 5px;">
                                 <div class="card-body">
-                                    <img class="card-img-top" src="${item.photo}">
+                                    <img class="card-img-top" src="${item.photo}" style="height: 150px; width: 150px; margin-left: 50px; padding-bottom: 10px;">
                                     <h5 class="card-title">${item.name_auto_part}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">${item.price} P</h6>
                                     <p class="card-text">Для автомобиля ${item.car.car_brand} ${item.car.car_model}, ${item.car.years_of_cars_production} года выпуска.</p>
@@ -83,6 +84,55 @@
                 let block = document.getElementById("contents-block")
                 block.innerHTML = htmlString.trim()
             })
+            getAllItems1().then(res => {
+                console.log(res);
+                let htmlString = ""
+                if (res === undefined || res.length == 0) {
+                    htmlString += `
+                    <div style="
+                        height: 500px;
+                        text-align: center;
+                        padding-top: 240px;
+                    ">
+                        Ничего нет
+                        </div>
+                    `
+                } else {
+                    let chunks = chunkArray(res, 6)
+                    chunks.forEach(items => {
+                        htmlString += `
+                        <div class="message-wrap-container" style="margin-top: 10px; margin-bottom: 10px;" id="contents-block">
+                        <div 
+                            style="
+                                flex-direction: row;
+                                flex: 5;
+                                display: contents;
+                            "
+                        >
+                        `
+                        items.forEach(item => {
+                            htmlString += `
+                            <div class="card" style="width: 18rem;flex: 1;margin: 5px;">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="${item.photo}" style="height: 150px; width: 150px; margin-left: 50px; padding-bottom: 10px;">
+                                    <h5 class="card-title">${item.name_auto_part}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${item.price} P</h6>
+                                    <p class="card-text">Для автомобиля ${item.car.car_brand} ${item.car.car_model}, ${item.car.years_of_cars_production} года выпуска.</p>
+                                    <p class="card-text text-muted">Производитель: "${item.producer.name_priducer}" по адресу ${item.producer.adress}.<br>Телефон ${item.producer.phone}</p>
+                                    <a href="#" class="card-link" style="color: dodgerblue;" onclick='add(${item.id})'>Добавить в корзину</a>
+                                </div>
+                            </div>
+                            `
+                        })
+                        htmlString += `
+                        </div>
+                        </div>
+                        `
+                    })
+                }
+                let block = document.getElementById("contents-block")
+                block.innerHTML = htmlString.trim()
+            }) 
         }
 
         function add(id_auto_part) {
@@ -143,6 +193,14 @@
         </div>
     </div>
 
+    <select id="filter" name="filter" size="1">
+        <option id="all">Всё</option>
+        <option id="2114">2114</option>
+        <option id="2113">2113</option>
+        <option id="2112">2112</option>
+        <option id="2110">2110</option>
+        <option id="2108">2108</option>
+        </select>
 
     <div class="content-wrap active">
         <div class="content">

@@ -62,10 +62,9 @@ def get_all_items():
             'price': auto_parts_warehouse[4],
             'photo': auto_parts_warehouse[5]
         })
-
-    response.content_type = 'application/json'
+        
+        response.content_type = 'application/json'
     return json.dumps(results)
-
 
 @get('/api/get-orders', auth={"role": 1})
 def get_orders(auth):
@@ -283,6 +282,9 @@ def validation(auth, auth_value):
         # Иначе мы прошли авторизацию
         return True
 
+def get_filter(id_car):
+    cur.execute("select * from auto_parts_warehouse where id_car=:id_car", {"id_car": id_car})
+    id_car = cur.fetchone()
 
 if __name__ == '__main__':
     migrate()

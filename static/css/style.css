@@ -243,3 +243,8 @@ a:visited {
     font-weight: 50;
     color: #c8c8c8;
 }
+#filter {
+    position: relative;
+    top: 15px;
+    left: 63px;
+}
