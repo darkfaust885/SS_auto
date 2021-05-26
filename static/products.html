@@ -38,7 +38,7 @@
             loadFilters().then(items => {
                 if (items === undefined || items.length === 0) return;
                 let selector = document.getElementById('filter')
-                let result = '<option selected value="all">Всё</option>'
+                let result = '<option selected value="all">- фильтр -</option>'
                 items.forEach(item => {
                     result += `
                     <option value="${item.id}">${item.car_brand} ${item.car_model} ${item.years_of_cars_production}</option>
@@ -50,8 +50,8 @@
             _loadItems()
         }
 
-        function _loadItems(filter_car_id) {
-            getAllItems(filter_car_id).then(res => {
+        function _loadItems(filter_value, sort_value) {
+            getAllItems(filter_value, sort_value).then(res => {
                 console.log(res);
                 let htmlString = ""
                 if (res === undefined || res.length == 0) {
@@ -102,9 +102,17 @@
             })
         }
 
+        let filter_value = 'all'
+        let sort_value = 'none'
+
         function setFilter(selectObject) {
-            var value = selectObject.value;  
-            _loadItems(value)
+            filter_value = selectObject.value;  
+            _loadItems(filter_value, sort_value)
+        }
+
+        function setSort(selectObject) {
+            sort_value = selectObject.value;
+            _loadItems(filter_value, sort_value)
         }
 
         function add(id_auto_part) {
@@ -166,7 +174,13 @@
     </div>
 
     <select id="filter" name="filter" size="1" onchange="setFilter(this)">
-        <option selected value="all">Всё</option>
+        <option selected value="all">- фильтр -</option>
+    </select>
+
+    <select id="sort" name="sort" size="1" onchange="setSort(this)">
+        <option selected value="none">- сортировка -</option>
+        <option value="price-asc">Цена ↑</option>
+        <option value="price-desc">Цена ↓</option>
     </select>
 
     <div class="content-wrap active">

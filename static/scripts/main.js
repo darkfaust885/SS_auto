@@ -73,9 +73,10 @@ async function loadFilters() {
         })
 }
 
-async function getAllItems(filter_car_id) {
+async function getAllItems(filter_value, sort_value) {
     let model = {
-        'filter_car_id': filter_car_id
+        'filter_car_id': filter_value,
+        'sort_type': sort_value
     }
     const request = new Request('/api/get-items', { method: 'POST', body: JSON.stringify(model) });
     return fetch(request)

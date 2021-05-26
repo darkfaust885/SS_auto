@@ -49,12 +49,17 @@ def get_filters():
 def get_all_items():
     data = json.loads(request.body.read())
 
-    filter_car_id = data.get('filter_car_id', None)
+    filter_car_id = data.get('filter_car_id', 'all')
+    sort_type = data.get('sort_type', 'none')
 
-    if filter_car_id == 'all' or not filter_car_id:
-        cur.execute("select * from auto_parts_warehouse")
-    else:
-        cur.execute("select * from auto_parts_warehouse where id_car=:id_car", {'id_car': filter_car_id})
+    auto_parts_warehouses_query = "select * from auto_parts_warehouse"
+    auto_parts_warehouses_params = {}
+    if filter_car_id != 'all':
+        auto_parts_warehouses_query += " where id_car=:id_car"
+        auto_parts_warehouses_params['id_car'] = filter_car_id
+    if sort_type != 'none':
+        auto_parts_warehouses_query += ' ORDER BY price ' + ('ASC' if sort_type == 'price-asc' else 'DESC')
+    cur.execute(auto_parts_warehouses_query, auto_parts_warehouses_params)
     auto_parts_warehouses = cur.fetchall()
 
     cur.execute("select * from producer")
