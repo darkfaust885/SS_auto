@@ -38,9 +38,23 @@ def index2(name):
     return template('<b>Hello {{name}}</b>!', name=name)
 
 
-@get('/api/get-items')
+@get('/api/get-filters')
+def get_filters():
+    cur.execute("select * from car")
+    cars = cur.fetchall()
+    return json.dumps([{'id': x[0], 'car_brand': x[1], 'car_model': x[2], 'years_of_cars_production': x[3]} for x in cars])
+
+
+@post('/api/get-items')
 def get_all_items():
-    cur.execute("select * from auto_parts_warehouse")
+    data = json.loads(request.body.read())
+
+    filter_car_id = data.get('filter_car_id', None)
+
+    if filter_car_id == 'all' or not filter_car_id:
+        cur.execute("select * from auto_parts_warehouse")
+    else:
+        cur.execute("select * from auto_parts_warehouse where id_car=:id_car", {'id_car': filter_car_id})
     auto_parts_warehouses = cur.fetchall()
 
     cur.execute("select * from producer")
@@ -65,6 +79,7 @@ def get_all_items():
         
         response.content_type = 'application/json'
     return json.dumps(results)
+
 
 @get('/api/get-orders', auth={"role": 1})
 def get_orders(auth):
@@ -282,9 +297,6 @@ def validation(auth, auth_value):
         # Иначе мы прошли авторизацию
         return True
 
-def get_filter(id_car):
-    cur.execute("select * from auto_parts_warehouse where id_car=:id_car", {"id_car": id_car})
-    id_car = cur.fetchone()
 
 if __name__ == '__main__':
     migrate()

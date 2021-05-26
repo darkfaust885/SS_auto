@@ -61,8 +61,23 @@ async function addToOrder(id_auto_part, quantity) {
         })
 }
 
-async function getAllItems() {
-    const request = new Request('/api/get-items');
+async function loadFilters() {
+    const request = new Request('/api/get-filters');
+    return fetch(request)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                return undefined
+            }
+        })
+}
+
+async function getAllItems(filter_car_id) {
+    let model = {
+        'filter_car_id': filter_car_id
+    }
+    const request = new Request('/api/get-items', { method: 'POST', body: JSON.stringify(model) });
     return fetch(request)
         .then(response => {
             if (response.status === 200) {
