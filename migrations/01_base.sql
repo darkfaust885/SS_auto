@@ -32,6 +32,7 @@ create table if not exists car (
 
 create table if not exists auto_parts_warehouse (
     id_auto_part INTEGER PRIMARY KEY AUTOINCREMENT,
+    photo text,
     id_car INTEGER,
     id_producer INTEGER,
     name_auto_part CHAR(50),
