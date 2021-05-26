@@ -60,6 +60,7 @@ def get_all_items():
                               x[0] == auto_parts_warehouse[2]), {}),
             'name_auto_part': auto_parts_warehouse[3],
             'price': auto_parts_warehouse[4],
+            'photo': auto_parts_warehouse[5]
         })
 
     response.content_type = 'application/json'
@@ -94,6 +95,7 @@ def get_orders(auth):
                      x[0] == auto_part[2]), {}),
                 'name_auto_part': auto_part[3],
                 'price': auto_part[4],
+                'photo': auto_part[5]
             } for auto_part in auto_parts_warehouses if auto_part[0] == order[1]), {}),
             'date_order': order[3],
             'quantity': order[4]
